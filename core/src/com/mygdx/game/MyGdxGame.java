@@ -53,8 +53,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 		sr =new ShapeRenderer();
 		col = new Color(Color.WHITE);
-		y=Gdx.graphics.getHeight()/2;
-		x=Gdx.graphics.getWidth()/2;
+		y= (float) Gdx.graphics.getHeight() /2;
+		x= (float) Gdx.graphics.getWidth() /2;
 
 
 
@@ -106,18 +106,18 @@ public class MyGdxGame extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 
 
-		float xlefttemp = 0;
+
 
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
 
+			xleft = lPad.getX();
+			xleft += 5;
+			lPad.setX(xleft);
+			lPad.setX(lPad.getX()+5);
+
+			System.out.println(lPad.getX());
 
 
-
-			xlefttemp = lPad.getX();
-			xlefttemp = xlefttemp + 5;
-			lPad.setX((int) xlefttemp);
-			lPad.setX((int) (lPad.getX()+5));
-			System.out.println(xlefttemp);
 
 
 		}

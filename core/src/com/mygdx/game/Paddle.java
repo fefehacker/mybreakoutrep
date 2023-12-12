@@ -31,9 +31,9 @@ public class Paddle {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         if (plane=='h'){
-            this.x = x;
+            this.x = (int) x;
         }
     }
 
