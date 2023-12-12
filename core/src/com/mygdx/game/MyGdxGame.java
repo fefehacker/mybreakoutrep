@@ -29,6 +29,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	float x;
 
 	float y;
+
+	float xleft = 200;
 	int player1 = 0;
 	int player2 = 0;
 
@@ -43,7 +45,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	int w=50;
 
 	//int yright = 200;
-	int xleft = 200;
+
 
 
 
@@ -57,7 +59,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
-		lPad=new Paddle(xleft,(int)10,w,10,'v',Color.WHITE);
+		lPad=new Paddle((int) xleft,10,w,10,'v',Color.WHITE);
 		//rPad=new Paddle(Gdx.graphics.getWidth()-(10+w),yright,w,50,'v',Color.WHITE);
 
 		font = new BitmapFont();
@@ -90,16 +92,6 @@ public class MyGdxGame extends ApplicationAdapter {
  		*/
 
 
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-			if (lPad.getX()+lPad.getW()<Gdx.graphics.getWidth()){
-				xleft = (int) lPad.getX();
-				xleft+=5;
-				lPad.setX(xleft);
-				lPad.setX((int) (lPad.getX()+5));
-			}
-
-		}
-
 		/*if (Gdx.input.isKeyPressed(Input.Keys.S)){
 			if (lPad.getY()+lPad.getH()>lPad.getH()){
 				yleft = lPad.getY();
@@ -114,6 +106,23 @@ public class MyGdxGame extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 
 
+		float xlefttemp = 0;
+
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+
+
+
+
+			xlefttemp = lPad.getX();
+			xlefttemp = xlefttemp + 5;
+			lPad.setX((int) xlefttemp);
+			lPad.setX((int) (lPad.getX()+5));
+			System.out.println(xlefttemp);
+
+
+		}
+
+
 
 		x += xspeed;
 		y += yspeed;
@@ -125,25 +134,16 @@ public class MyGdxGame extends ApplicationAdapter {
 		}
 
 		if (y < 15) {
-			yspeed = 2;
+			y = 540;
+			x = 960;
 		}
 
-		if (x > Gdx.graphics.getWidth() - (10 + w)) {
-			if (y < rPad.getY() + 50 && y > rPad.getY()){
-				xspeed = xspeed * -1;
-
-
-
-			}
+		if (x > Gdx.graphics.getWidth() -25) {
+			xspeed = xspeed * -1;
 		}
 
 		if (x < 20) {
-			if (y < lPad.getY() + 50 && y > lPad.getY()){
-				xspeed = xspeed * -1;
-
-
-
-			}
+			xspeed = xspeed * -1;
 		}
 
 
@@ -164,7 +164,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		lPad.draw(sr);
 		//rPad.draw(sr);
 
-		if (x > Gdx.graphics.getWidth() + 30) {
+		/*if (x > Gdx.graphics.getWidth() + 30) {
 			x = (float) Gdx.graphics.getWidth() /2;
 			y = (float) Gdx.graphics.getHeight() /2;
 			player2 = player2 + 1;
@@ -190,7 +190,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.begin();
 		font.draw(batch, ""+player2, 100, 400);
 		font.draw(batch, ""+player1, 500, 400);
-		batch.end();
+		batch.end();*/
 
 
 		sr.end();
