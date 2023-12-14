@@ -12,29 +12,26 @@ import java.util.concurrent.TimeUnit ;
 public class Paddle {
     private int w,h;
     private int x,y;
-    private char plane;
     private Color col;
 
-    public Paddle(int x, int y, int w, int h, char p,Color c){
+    public Paddle(int x, int y, int w, int h,Color c){
         this.x=x;
         this.y=y;
         this.w=w;
         this.h=h;
-        plane=p;
         col=c;
     }
     public void draw(ShapeRenderer sr){
         sr.setColor(col);
         sr.rect(x,y,w,h);
     }
-    public float getX() {
+    public int getX() {
         return x;
     }
 
     public void setX(float x) {
-        if (plane=='h'){
             this.x = (int) x;
-        }
+
     }
 
     public int getY() {
@@ -42,9 +39,8 @@ public class Paddle {
     }
 
     public void setY(int y) {
-        if(plane=='v'){
             this.y = y;
-        }
+
     }
 
     public int getW() {
@@ -63,13 +59,9 @@ public class Paddle {
         this.h = h;
     }
 
-    public char getPlane() {
-        return plane;
-    }
 
-    public void setPlane(char plane) {
-        this.plane = plane;
-    }
+
+
 
     public Color getCol() {
         return col;

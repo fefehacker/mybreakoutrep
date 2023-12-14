@@ -59,7 +59,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
-		lPad=new Paddle((int) xleft,10,w,10,'v',Color.WHITE);
+		lPad=new Paddle((int) xleft,10,w,10,Color.WHITE);
 		//rPad=new Paddle(Gdx.graphics.getWidth()-(10+w),yright,w,50,'v',Color.WHITE);
 
 		font = new BitmapFont();
@@ -103,27 +103,6 @@ public class MyGdxGame extends ApplicationAdapter {
 		}*/
 
 
-		ScreenUtils.clear(0, 0, 0, 1);
-
-
-
-
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-
-			xleft = lPad.getX();
-			xleft += 5;
-			lPad.setX(xleft);
-			lPad.setX(lPad.getX()+5);
-
-			System.out.println(lPad.getX());
-
-
-
-
-		}
-
-
-
 		x += xspeed;
 		y += yspeed;
 		int width = Gdx.graphics.getWidth() -25;
@@ -149,19 +128,24 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
+		ScreenUtils.clear(0, 0, 0, 1);
+
+
 		sr.begin(ShapeRenderer.ShapeType.Filled);
 		sr.setColor(Color.WHITE);
 		sr.circle(x, y, 15);
+		lPad.draw(sr);
 		sr.end();
 
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			movePaddle(-1);
+		}
+
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			movePaddle(1);
+		}
 
 
-
-
-
-
-		sr.begin(ShapeRenderer.ShapeType.Filled);
-		lPad.draw(sr);
 		//rPad.draw(sr);
 
 		/*if (x > Gdx.graphics.getWidth() + 30) {
@@ -193,8 +177,23 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.end();*/
 
 
-		sr.end();
+
 	}
+
+	public void movePaddle(int d) {
+		if (d == -1){
+			if (lPad.getX() > 0){
+				lPad.setX(lPad.getX() -5);
+				System.out.println(lPad.getX());
+			}
+		} else if (lPad.getX() + lPad.getW() < Gdx.graphics.getWidth()) {
+			lPad.setX(lPad.getX() + 5);
+			System.out.println(lPad.getX());
+		}
+
+	}
+
+
 
 
 	@Override
